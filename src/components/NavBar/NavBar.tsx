@@ -13,20 +13,21 @@ import MenuItem from "@mui/material/MenuItem";
 
 interface NavBarProps {
     avatarClicked: boolean;
-    setAvatarClicked: (value: boolean) => void;
+    setAvatarClicked: (val: boolean | ((val: boolean) => boolean)) => void;
 }
 
 const pages = ["Home", "Search"];
 
-const NavBar = ({avatarClicked, setAvatarClicked}: NavBarProps) => {
+const NavBar = ({setAvatarClicked}: NavBarProps) => {
 
-    const changeAvatarStatus = () => {
-        avatarClicked ? setAvatarClicked(false) : setAvatarClicked(true);
-    };
-
-    // const toggleAvatarClicked = () => {
-    //     setAvatarClicked((previousState) => !previousState);
+    // const changeAvatarStatus = () => {
+    //     avatarClicked ? setAvatarClicked(false) : setAvatarClicked(true);
     // };
+
+    const toggleAvatarClicked = () => {
+        const updateAvatarStatus = (previousStatus: boolean) => {return !previousStatus};
+        setAvatarClicked(updateAvatarStatus);
+    };
 
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
       null
@@ -108,7 +109,7 @@ const NavBar = ({avatarClicked, setAvatarClicked}: NavBarProps) => {
               ))}
             </Box>
             <Box sx={{ flexGrow: 0 }}>
-                <IconButton onClick={changeAvatarStatus} sx={{ p: 0 }}>
+                <IconButton onClick={toggleAvatarClicked} sx={{ p: 0 }}>
                     <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
                 </IconButton>
             </Box>
