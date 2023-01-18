@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
+import LoginForm from './components/LoginForm/LoginForm';
+import LoginPage from './components/LoginPage/LoginPage';
 import NavBar from './components/NavBar/NavBar';
+import RegisterForm from './components/RegisterForm/RegisterForm';
 
 function App() {
 
@@ -16,7 +19,8 @@ console.log(avatarClicked);
       {/* DYNAMIC */}
         <Routes>
           <Route path='/home' element={<HomePage />} />
-          <Route path='/' element={"Pusty url"} />
+          <Route path='/register' element={<RegisterForm />} />
+          <Route path='/login' element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </div>
